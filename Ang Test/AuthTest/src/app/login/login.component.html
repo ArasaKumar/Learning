@@ -1,0 +1,26 @@
+<div>
+    <form [formGroup]="loginForm">
+       <p>
+          <label>
+          Role:
+          <input type="text" formControlName="role">
+          </label>
+       </p>
+       <p>
+          <label>
+          User Name:
+          <input type="text" formControlName="userName">
+          </label>
+       </p>
+       <p>
+          <label>
+          Password:
+          <input type="password" formControlName="pwd">
+          </label>
+       </p>
+       <p>
+          <button (click)="Set()">Set Value</button>
+          <button (click)="Login()">Login</button>
+       </p>
+    </form>
+ </div>
