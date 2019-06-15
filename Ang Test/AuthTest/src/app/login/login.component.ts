@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { WebAPIWrapperService } from '../Services/web-apiwrapper.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserAuthResponseModel } from '../Models/app.Model';
 
 @Component({
   selector: 'app-login',
@@ -35,9 +36,12 @@ export class LoginComponent
     
     const userStr = JSON.stringify(user);
 
-    alert("Button click works!"+"\r\n"+userStr);
+    this._wrapper.Login(userStr).then((objResponse) => this.StoreAuth(objResponse));
+  }
 
-    this._wrapper.Login(userStr);
+  private StoreAuth(pobjUserAuthRes: UserAuthResponseModel)
+  {
+    localStorage.setItem("AuthKey", pobjUserAuthRes.token);
   }
 
   Set()
