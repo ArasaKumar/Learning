@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { WebAPIWrapperService } from './Services/web-apiwrapper.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHandlerService } from './auth-handler.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+{
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthHandlerService,
+  multi: true
+}
+  ],
   bootstrap: [AppComponent]
 })
 
